@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const endpoint = process.env.CLASSES_API_ENDPOINT;
+const endpoint = process.env.NEXT_PUBLIC_CLASSES_API_ENDPOINT;
 if (!endpoint) {
-  throw new Error("CLASSES_API_ENDPOINT is not defined");
+  throw new Error("NEXT_PUBLIC_CLASSES_API_ENDPOINT is not defined");
 }
 
 const API_ENDPOINT: string = endpoint;
