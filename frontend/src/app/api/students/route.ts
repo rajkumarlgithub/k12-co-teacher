@@ -1,14 +1,13 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+// Debug logging
 console.log("Available env variables:", process.env);
 console.log("STUDENTS_API_ENDPOINT:", process.env.STUDENTS_API_ENDPOINT);
 
-import { NextRequest, NextResponse } from 'next/server';
-
-const API_ENDPOINT = "https://8le5se2aja.execute-api.us-west-2.amazonaws.com/Dev/getStudentsForClass";
-
-if (!endpoint) {
-  throw new Error("STUDENTS_API_ENDPOINT is not defined");
-}
-const API_ENDPOINT: string = endpoint;
+// Use env variable if available, otherwise fallback
+const API_ENDPOINT =
+  process.env.STUDENTS_API_ENDPOINT ||
+  "https://8le5se2aja.execute-api.us-west-2.amazonaws.com/Dev/getStudentsForClass";
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,23 +17,17 @@ export async function POST(request: NextRequest) {
     // Call the real API
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
     const data = await response.json();
 
-    // Forward the API response with the same status
+    // Forward API response with same status
     return NextResponse.json(data, { status: response.status });
   } catch (error: any) {
     console.error('Students API Error:', error);
 
-    // Return a clean JSON error
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
