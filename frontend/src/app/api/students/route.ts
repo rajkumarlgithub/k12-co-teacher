@@ -1,3 +1,4 @@
+console.log("Available env variables:", process.env);
 console.log("STUDENTS_API_ENDPOINT:", process.env.STUDENTS_API_ENDPOINT);
 
 import { NextRequest, NextResponse } from 'next/server';
