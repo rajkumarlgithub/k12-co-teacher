@@ -3,7 +3,7 @@ console.log("STUDENTS_API_ENDPOINT:", process.env.STUDENTS_API_ENDPOINT);
 
 import { NextRequest, NextResponse } from 'next/server';
 
-const endpoint = process.env.STUDENTS_API_ENDPOINT;
+const API_ENDPOINT = "https://8le5se2aja.execute-api.us-west-2.amazonaws.com/Dev/getStudentsForClass";
 
 if (!endpoint) {
   throw new Error("STUDENTS_API_ENDPOINT is not defined");
