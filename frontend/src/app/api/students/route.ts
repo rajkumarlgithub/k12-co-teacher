@@ -1,3 +1,5 @@
+console.log("STUDENTS_API_ENDPOINT:", process.env.STUDENTS_API_ENDPOINT);
+
 import { NextRequest, NextResponse } from 'next/server';
 
 const endpoint = process.env.STUDENTS_API_ENDPOINT;
